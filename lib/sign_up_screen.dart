@@ -13,6 +13,8 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
   late UserCredential userCredential;
   String? password, email;
   // GlobalKey<FormState> userNameFormState = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> emailFormState = GlobalKey<FormState>();
   GlobalKey<FormState> passwordFormState = GlobalKey<FormState>();
   signeUp() async {
@@ -22,7 +24,8 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
       emailFormData.save();
       try {
         userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email!, password: password!);
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text);
 
         return userCredential;
       } on FirebaseAuthException catch (e) {
@@ -90,6 +93,7 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
             child: Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                controller: emailController,
                 onSaved: (val) {
                   email = val;
                 },
@@ -125,6 +129,7 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
             child: Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                controller: passwordController,
                 onSaved: (val) {
                   password = val;
                 },

@@ -360,62 +360,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           GestureDetector(
             onTap: () async {
-              // сначала идёт регистрация
-              // 👇👇👇
-              // try {
-              //  userCredential = await FirebaseAuth.instance
-              //       .createUserWithEmailAndPassword(
-              //           email: "Ulamuyaman@gmail.com",
-              //           password: "sadid123451988");
-              // } on FirebaseAuthException catch (e) {
-              //   if (e.code == 'weak-password') {
-              //     print('The password provided is too weak.');
-              //   } else if (e.code == 'email-already-in-use') {
-              //     print('The account already exists for that email.');
-              //   }
-              // } catch (e) {
-              //   print(e);
-              // }
-
-              try {
-                userCredential = await FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: "salman.com", password: "sadid123451988");
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'weak-password') {
-                  print('The password provided is too weak.');
-                } else if (e.code == 'email-already-in-use') {
-                  print('The account already exists for that email.');
-                }
-              } catch (e) {
-                print(e);
-              }
-              print(userCredential);
-              //Верификация почты 👇👇👇
-              // if (userCredential.user.emailVerified == false) {
-              //   User user = FirebaseAuth.instance.currentUser;
-              //   await user.sendEmailVerification();
-              // }
-            },
-            child: Container(
-              height: 50.0,
-              width: 50.0,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      offset: Offset(0, 2),
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                  image:
-                      DecorationImage(image: AssetImage('images/gmail.png'))),
-            ),
-          ),
-          GestureDetector(
-            onTap: () async {
               userCredential = await signInWithGoogle();
               print(userCredential);
             },
