@@ -11,7 +11,7 @@ class SigneUpScreen extends StatefulWidget {
 
 class _SigneUpScreenState extends State<SigneUpScreen> {
   late UserCredential userCredential;
-  String? password, email;
+
   // GlobalKey<FormState> userNameFormState = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -95,7 +95,7 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
               child: TextFormField(
                 controller: emailController,
                 onSaved: (val) {
-                  email = val;
+                  emailController.text = val!;
                 },
                 validator: (val) {
                   if (val!.isEmpty) {
@@ -131,7 +131,7 @@ class _SigneUpScreenState extends State<SigneUpScreen> {
               child: TextFormField(
                 controller: passwordController,
                 onSaved: (val) {
-                  password = val;
+                  passwordController.text = val!;
                 },
                 validator: (val) {
                   if (val!.isEmpty) {

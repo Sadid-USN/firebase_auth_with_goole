@@ -42,8 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> emailFormState = GlobalKey<FormState>();
   GlobalKey<FormState> passwordFormState = GlobalKey<FormState>();
-  String? email;
-  String? password;
+
   signInWithEmail() async {
     var emailFormData = emailFormState.currentState;
     var passwordFormData = passwordFormState.currentState;
@@ -137,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: TextFormField(
               controller: emailController,
               onSaved: (val) {
-                email = val;
+                emailController.text = val!;
               },
               validator: (val) {
                 if (val!.length > 32) {
@@ -194,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: TextFormField(
               controller: passwordController,
               onSaved: (val) {
-                password = val;
+                passwordController.text = val!;
               },
               validator: (val) {
                 if (val!.length > 32) {
